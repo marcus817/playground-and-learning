@@ -1,12 +1,15 @@
-var express = require('express');
-var app = express();
+var app = require('./config/server');
+
 
 app.get('/', function(req, res){
-	res.send("<html><body>Portal de Noticias</body></html>");
+	res.render('home/index');
+});
+app.get('/novanoticia', function(req, res){
+	res.render('admin/form_add_noticia');
 });
 
-app.get('/ti', function(req, res){
-	res.send("<html><body>Portal do TI</body></html>");
+app.get('/noticias', function(req, res){
+	res.render("noticias/noticias");
 });
 
 app.listen(3000, function(){
