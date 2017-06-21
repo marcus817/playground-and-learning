@@ -1,10 +1,16 @@
 var mysql = require('mysql');
-module.exports = function () {
-		return mysql.createConnection({
+
+var connMySQL = function(){
+	return mysql.createConnection({
 		host: 'localhost',
 		user: 'root',
 		password:'',
 		database: 'node'
 	});
+	console.log('Conexão Realizada');
+}
 
+module.exports = function () {
+	return connMySQL;
+	console.log('Conexão Invocada!');
 }
