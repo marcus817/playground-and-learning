@@ -8,5 +8,28 @@
 
 		<h1>Notícias Oba Oba!</h1>
 
+		<table>
+			<caption>Exibição de Noticias</caption>
+
+
+			<thead>
+		
+				<tr>
+					<td>ID</td>
+					<td>Noticia</td>
+				</tr>
+			</thead>
+			<tbody>
+				 
+              <% for (var i=0; i < noticias.length; i++) { %>
+				<tr>
+					<td><%= noticias[i].id %></td>
+					<td><%= noticias[i].titulo %></td>
+				</tr>
+
+				<% } %>
+			</tbody>
+		</table>
+
 	</body>
 </html>
