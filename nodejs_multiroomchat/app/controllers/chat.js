@@ -16,6 +16,12 @@ module.exports.iniciaChat = function(aplication, req, res){
 
 		);
 
+	aplication.get('io').emit(
+		'participantesParaCliente',
+		{apelido: dadosForm.apelido}
+		);
+	
+
 	res.render('chat', {dadosForm : dadosForm});
 
 }
