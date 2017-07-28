@@ -16,6 +16,6 @@ module.exports.iniciaChat = function(aplication, req, res){
 
 		);
 
-	res.render('chat.ejs');
+	res.render('chat', {dadosForm : dadosForm});
 
 }
