@@ -5,7 +5,9 @@ module.exports.index = function(app, req, res){
 		
 	noticiasModel.getTopFiveNoticias(function(error, result){
 		console.log(result);
-		res.render("home/index", {noticias : result});
+		
+		res.send(result);
+		//res.render("home/index", {noticias : result});
 	});	
 
 	}
