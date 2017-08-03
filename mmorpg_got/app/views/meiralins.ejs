@@ -7,13 +7,15 @@
 	<tr>
 		<td >
 			<font color="#FFFFFF" face="Arial"><font size=4 color="#FFFFFF"><strong><%= dados.nome %></strong></font> <br>
-						<font size=2><%= dados.funcao %><br>
-												<a href="mailto:<%= dados.email %>" style="color: #FFFFFF;"><%= dados.email %></a> <br>
-												Fone: <%= dados.fone1 %> &bull; 81 <%= dados.fone2 %> <br>
-												<a href="http://www.meiralinsvw.com.br" target="_blank" style="color: #FFFFFF;">www.meiralinsvw.com.br</a> 
+					
+				<font size=2><%= dados.funcao %><br>
+					<a href="mailto:<%= dados.email %>" style="color: #FFFFFF;"><%= dados.email %></a> <br>
+						Fone:  <%= dados.fone1 %> &bull;  <%= dados.fone2 %> <br>
+					<a href="http://www.meiralinsvw.com.br" target="_blank" style="color: #FFFFFF;">www.meiralinsvw.com.br</a> 
 
 
-												</font></font>
+				</font>
+			</font>
 		</td>
 		<td>
 			
@@ -41,3 +43,10 @@
 		</td>
 	</tr>
 </table>
+
+ <form  action="/gerapng" method="post">
+				
+						<button type="submit" class="btn btn-success">Gerar PNG</button>
+
+				
+</form>
