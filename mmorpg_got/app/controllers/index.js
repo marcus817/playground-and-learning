@@ -14,38 +14,41 @@ module.exports.assinar = function(application, req, res){
 	var dados = req.body;
 	console.log(req.body.empresa);
 
+	req.assert('nome','Nome do colaborador não pode ser vazio').notEmpty();
+	req.assert('email', 'Necessario informa o seu e-mail').notEmpty();
+	req.assert('email', 'insira um e-mail valido').isEmail();
+	req.assert('fone1', 'Informe seu telefone seu ramal direto (DDD) XXXX-XXXX').len(11, 11);
+	req.assert('fone2', 'Informe seu telefone com (DDD) XXXX-XXXX').len(11, 11);
+
+	var erros = req.validationErrors();
+	if(erros){
+		res.render("cadastrooutass", {validacao:erros});
+		return;
+	}
 
 	switch(dados.empresa){
 		case "1":
-		console.log("ADTSA");
 		res.render('ADTSA',{dados});
 		break;
 		case "2":
-		console.log("REGENCE");
 		res.render('Regence',{dados});
 		break;
 		case "3":
-		console.log("MEIRALINS");
 		res.render('meiralins',{dados});
 		break;
 		case "4":
-		console.log("NOVO MUNDO");
 		res.render('NovoMundo',{dados});
 		break;
 		case "5":
-		console.log("PIGALLE");
 		res.render('PigalleCitroen',{dados});
 		break;
 		case "6":
-		console.log("PGLE");
 		res.render('PigallePeugeot',{dados});
 		break;
 		case "7":
-		console.log("SILCAR");
 		res.render('Silcar',{dados});
 		break;
 		case "8":
-		console.log("WELLE");
 		res.render('Welle',{dados});
 		break;
 
