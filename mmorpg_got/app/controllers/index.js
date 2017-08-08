@@ -78,5 +78,5 @@ module.exports.autenticar = function(application, req, res){
 	UsuariosDAO.autenticar(dadosForm, req, res);
 
 
-	res.send('Criar Sessão');
+	//res.send('Criar Sessão');
 }

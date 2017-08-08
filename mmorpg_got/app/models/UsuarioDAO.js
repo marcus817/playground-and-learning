@@ -24,16 +24,22 @@ UsuarioDAO.prototype.autenticar = function (usuario, req, res){
 	mongo.connect(url, function(err, db){
 		assert.equal(null, err);
 		db.collection('usuarios').find(usuario).toArray(function(err, result){
-			if(result[0] != undefined){
-				
+			if(result[0] != undefined){			
 				req.session.autorizado = true;
-
+				req.session.casa  = result[0].casa;
+				req.session.usuario = result[0].usuario;
 			}
+			if(req.session.autorizado){
+				res.redirect("jogo");
+			}else{
+				res.render("index", {validacao: {}});
+			}
+
+			db.close();	
 		});
 
 	});
-
-	console.log(usuario);
+	
 }
 module.exports = function(){
 	return UsuarioDAO;
