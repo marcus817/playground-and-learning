@@ -26,6 +26,11 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 /* configurar o middleware express-validator */
 app.use(expressValidator());
+app.use(expressSession({
+	secret: 'svp0rt3',
+	resave: false,
+	saveUninitialized: false 
+}));
 
 /* efetua o autoload das rotas, dos models e dos controllers para o objeto app */
 consign()

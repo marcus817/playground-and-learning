@@ -1,4 +1,4 @@
-var htmlConvert = require('html-convert');
+	var htmlConvert = require('html-convert');
 var fs = require('fs');
 
 
@@ -12,13 +12,12 @@ module.exports.assinatura = function(application, req, res){
 
 module.exports.assinar = function(application, req, res){
 	var dados = req.body;
-	console.log(req.body.empresa);
-
+	
 	req.assert('nome','Nome do colaborador não pode ser vazio').notEmpty();
 	req.assert('email', 'Necessario informa o seu e-mail').notEmpty();
 	req.assert('email', 'insira um e-mail valido').isEmail();
-	req.assert('fone1', 'Informe seu telefone seu ramal direto (DDD) XXXX-XXXX').len(11, 11);
-	req.assert('fone2', 'Informe seu telefone com (DDD) XXXX-XXXX').len(11, 11);
+	//req.assert('fone1', 'Informe seu telefone seu ramal direto (DDD) XXXX-XXXX').len(11, 11);
+	//req.assert('fone2', 'Informe seu telefone com (DDD) XXXX-XXXX').len(11, 11);
 
 	var erros = req.validationErrors();
 	if(erros){
@@ -73,6 +72,11 @@ module.exports.autenticar = function(application, req, res){
 		res.render("index", {validacao:erros});
 		return;
 	}
+
+	var connection = application.config.dbConnection();
+	var UsuariosDAO = new application.app.models.UsuarioDAO();
+	UsuariosDAO.autenticar(dadosForm, req, res);
+
 
 	res.send('Criar Sessão');
 }
