@@ -67,7 +67,7 @@ module.exports.autenticar = function(application, req, res){
 	req.assert('senha', 'Senha não pode ser vazia').notEmpty();
 
 	var erros = req.validationErrors();
-
+	
 	if(erros){
 		res.render("index", {validacao:erros});
 		return;
@@ -75,6 +75,10 @@ module.exports.autenticar = function(application, req, res){
 
 	var connection = application.config.dbConnection();
 	var UsuariosDAO = new application.app.models.UsuarioDAO();
+	
+	/*
+		Função @autenticar possui um redirecionamento se o redirecionamento tiver sucesso.
+	*/
 	UsuariosDAO.autenticar(dadosForm, req, res);
 
 
