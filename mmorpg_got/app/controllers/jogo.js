@@ -5,12 +5,13 @@ module.exports.jogo = function(application, req, res){
 		
 		return;
 	}
-	res.render('jogo',{img_casa: req.session.casa});
+	
 	var usuario = req.session.usuario;
+	let casa = req.session.casa;
 	var JogoDAO = new application.app.models.JogoDAO();
 	
 	//console.log(usuario);
-	JogoDAO.iniciarJogo(usuario);
+	JogoDAO.iniciarJogo(res, usuario, casa);
 }
 
 module.exports.sair = function(application, req, res){
@@ -19,3 +20,13 @@ module.exports.sair = function(application, req, res){
 	});
 
 }
+
+module.exports.suditos = function(application, req, res){
+	
+	res.render('aldeoes', {validacao: {}});
+}
+
+module.exports.pergaminhos = function(application, req, res){
+	res.render('pergaminhos', {validacao: {}});
+}
+

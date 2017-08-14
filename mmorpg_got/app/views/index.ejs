@@ -28,9 +28,9 @@
 				<div class="alert alert-danger">
 					<strong>Atenção!</strong>
 					<ul>
-						<% for(var i = 0; i < validacao.length; i++) { %>
-						<li><%=validacao[i].msg%></li>
-						<%}%>
+						<% validacao.forEach(function(valida) { %>
+						<li><%=valida.msg%></li>
+						<%});%>
 					</ul>
 				</div>
 
