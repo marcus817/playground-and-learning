@@ -38,6 +38,7 @@
 					 	method: 'get',
 					 	success: function(data){
 					 		$("#acoes").html(data);
+					
 					 		cronometro();
 					 	}
 					 });
@@ -46,11 +47,15 @@
 
 			function cronometro(){
 				$('.tempo_restante').each(function(){
-					var segundos = $(this).html();
-					alert(segundos); 
+					let segundos = $(this).html();
+					let segundos_atuais = parseInt(segundos) - 1;
+					$(this).html(segundos_atuais);
 				});
+
+				 setTimeout('cronometro()', 1000);
 			}
 
+			
 		</script>
 	</head>
 
