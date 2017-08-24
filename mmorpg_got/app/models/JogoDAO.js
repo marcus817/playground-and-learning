@@ -8,15 +8,17 @@ function JogoDAO(){
 }
 
 
-JogoDAO.prototype.iniciarJogo = function(res, usuario, casa, comando_invalido){
+JogoDAO.prototype.iniciarJogo = function(res, usuario, casa, msg){
 	mongo.connect(url, function(err, db){
 		assert.equal(null, err);
+
 		db.collection('jogos').find({usuario: usuario}).toArray(function(err, result){
-			console.log(result);
-			res.render('jogo',{img_casa: casa, jogo: result[0], comando_invalido : comando_invalido});
+			
+			res.render('jogo',{img_casa: casa, jogo: result[0], msg : msg});
+			return;
 		});
 		db.close();
-		
+		 
 
 	});
 
@@ -42,6 +44,34 @@ JogoDAO.prototype.gerarParametros = function(usuario) {
 		});
 	});
 };
+
+JogoDAO.prototype.acao = function (acao){
+	
+	mongo.connect(url, function(err, db){
+		assert.equal(null, err);
+		
+		db.collection('acao').insert(acao, function(err, result){
+				assert.equal(null, err);
+				console.log('Acao Cadastrada');
+				db.close();
+		});
+	});
+}
+
+JogoDAO.prototype.getAcoes = function (usuario, res){
+	mongo.connect(url, function(err, db){
+		assert.equal(null, err);
+		let date = new Date();
+		let momento_atual = date.getTime();
+		db.collection('acao').find({usuario: usuario, acao_termina_em: {$gt:momento_atual}}).toArray(function(err, result){
+			res.render("pergaminhos", {acoes : result});
+			
+		});
+		db.close();
+		 
+
+	});
+}
 
 module.exports = function (){
 	return JogoDAO;

@@ -38,11 +38,18 @@
 					 	method: 'get',
 					 	success: function(data){
 					 		$("#acoes").html(data);
+					 		cronometro();
 					 	}
 					 });
 				});
 			});
 
+			function cronometro(){
+				$('.tempo_restante').each(function(){
+					var segundos = $(this).html();
+					alert(segundos); 
+				});
+			}
 
 		</script>
 	</head>
@@ -59,7 +66,7 @@
 
 	    <div class="container">
 
-	    <% if(comando_invalido == 'S' )  { %>
+	    <% if(msg == 'S' )  { %>
 			<br>
 				<div class="alert alert-danger" id="msg_erros">
 					<strong>Operação Inválida, verifique os campos das acões!</strong>
