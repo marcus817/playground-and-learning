@@ -49,7 +49,13 @@
 				$('.tempo_restante').each(function(){
 					let segundos = $(this).html();
 					let segundos_atuais = parseInt(segundos) - 1;
-					$(this).html(segundos_atuais);
+
+					if(segundos_atuais < 0){
+						window.location.href = "/jogo?msg=C";
+					}else{
+						$(this).html(segundos_atuais);
+					}
+					
 				});
 
 				 setTimeout('cronometro()', 1000);
@@ -75,11 +81,18 @@
 			<br>
 				<div class="alert alert-danger" id="msg_erros">
 					<strong>Operação Inválida, verifique os campos das acões!</strong>
-					
 				</div>
 
 			<%}%>
-	    	
+
+
+	   <% if(msg == 'C' )  { %>
+			<br>
+				<div class="alert alert-info" id="msg_erros">
+					<strong>Ação realizada com sucesso</strong>
+				</div>
+
+			<%}%> 	
 			<div class="row">
 	    		<div class="col-sm-3 casa">
 					<img src="images/casa_<%=img_casa%>.jpg" />
