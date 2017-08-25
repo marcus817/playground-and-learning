@@ -53,8 +53,23 @@ JogoDAO.prototype.acao = function (acao){
 		db.collection('acao').insert(acao, function(err, result){
 				assert.equal(null, err);
 				console.log('Acao Cadastrada');
-				db.close();
+				
 		});
+
+		let moedas= null;
+
+			switch(parseInt(acao.quantidade)){
+				case 1: moedas = -3 * acao.quantidade; break;
+				case 2: moedas = -2 * acao.quantidade; break;
+				case 3: moedas = -1 * acao.quantidade; break;
+				case 5: moedas = -1 * acao.quantidade; break;
+		}
+		console.log(moedas);
+		console.log(acao.usuario);
+
+		db.collection('jogos').update({usuario: acao.usuario}, {$inc:{moeda: moedas}});
+		db.close();
+		
 	});
 }
 
