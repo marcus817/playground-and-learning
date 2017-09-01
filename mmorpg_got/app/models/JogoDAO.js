@@ -1,4 +1,5 @@
 var mongo = require('mongodb');
+var ObjectID = require('mongodb').ObjectID;
 var assert = require('assert');
 var url = 'mongodb://localhost:27017/got';
 
@@ -85,6 +86,17 @@ JogoDAO.prototype.getAcoes = function (usuario, res){
 		db.close();
 		 
 
+	});
+}
+
+
+JogoDAO.prototype.revogar = function(_id,res){
+	mongo.connect(url, function(err, db){
+		assert.equal(null, err);
+		db.collection("acao").remove({_id:ObjectID(_id)}, function(err, result){
+			res.redirect("jogo?msg=D"); 
+		}); 
+	db.close();	
 	});
 }
 
